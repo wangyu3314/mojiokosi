@@ -1,0 +1,50 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+  background: #FAF8F5;
+  color: #2B2622;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
+  background: #2B2622;
+  color: #FAF8F5;
+  padding: 8px 14px;
+  font-size: 14px;
+}
+
+button:disabled {
+  background: #C9C2B8;
+  cursor: not-allowed;
+}
+
+button.secondary {
+  background: transparent;
+  color: #2B2622;
+  border: 1px solid #C9C2B8;
+}
+
+input[type="text"] {
+  font-family: inherit;
+  font-size: 14px;
+  padding: 6px 8px;
+  border: 1px solid #E3DCD1;
+  border-radius: 6px;
+  background: #fff;
+}
+
+select {
+  font-family: inherit;
+  font-size: 13px;
+  padding: 4px 6px;
+  border-radius: 6px;
+  border: 1px solid #E3DCD1;
+  background: #fff;
+}
