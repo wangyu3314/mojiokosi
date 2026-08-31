@@ -75,7 +75,7 @@ export default function Download() {
               配信のスクリーンレコードに、話者ごとに色分けしたアイコン付き字幕とタイトルを焼き込むツールです。
               サーバーは使わず、ダウンロードしたフォルダをそのまま自分のPCで動かします。
             </p>
-            <a className="cta" href="https://github.com/wangyu3314/mojiokosi/tree/main/public/downloads" download>
+            <a className="cta" href="/downloads/stream-subtitle-app.zip" download>
               ダウンロード(ZIP)
             </a>
             <p className="cta-note">Windows対応・要 Python / Node.js / ffmpeg</p>
@@ -164,7 +164,7 @@ export default function Download() {
         </section>
 
         <section className="section download-again">
-          <a className="cta" href="https://github.com/wangyu3314/mojiokosi/tree/main/public/downloads" download>
+          <a className="cta" href="/downloads/stream-subtitle-app.zip" download>
             ダウンロード(ZIP)
           </a>
         </section>
