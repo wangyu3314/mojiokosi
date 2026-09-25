@@ -1,4 +1,5 @@
 import { useRef, useState } from "react";
+import Head from "next/head";
 import VideoUploader from "../components/VideoUploader";
 import SpeakerPanel from "../components/SpeakerPanel";
 import TranscriptEditor from "../components/TranscriptEditor";
@@ -159,7 +160,44 @@ export default function Home() {
   }
 
   return (
-    <main style={{ maxWidth: 900, margin: "0 auto", padding: "32px 20px" }}>
+    <main style={{ maxWidth: 900, margin: "0 auto", padding: "32px 20px", fontFamily: "sans-serif" }}>
+      <Head>
+        <title>配信字幕エディタ</title>
+      </Head>
+
+      {/* 📥 他の人がWebサイトを開いた時に表示されるダウンロード枠 */}
+      {!hasTranscript && (
+        <div style={{ background: "#f0f7ff", border: "1px solid #c2e0ff", padding: "24px", borderRadius: "12px", marginBottom: "32px" }}>
+          <h2 style={{ fontSize: 18, marginTop: 0, marginBottom: 8, color: "#0056b3" }}>📥 アプリのダウンロード</h2>
+          <p style={{ fontSize: 13, color: "#444", marginBottom: 16, lineHeight: "1.5" }}>
+            このWebサイト上で動画アップロードを行うには、ご自身のPC側でバックエンドサーバーの起動が必要です。<br />
+            文字起こし機能を含むアプリ一式（Windows用）は、以下のボタンからダウンロードしてご利用いただけます。
+          </p>
+          <div style={{ display: "flex", gap: "16px", alignItems: "center", flexWrap: "wrap" }}>
+            <a 
+              href="/downloads/stream-subtitle-app.zip" 
+              download
+              style={{ 
+                display: "inline-block", 
+                backgroundColor: "#0070f3", 
+                color: "#fff", 
+                padding: "12px 24px", 
+                borderRadius: "6px", 
+                fontSize: "14px", 
+                fontWeight: "bold", 
+                textDecoration: "none",
+                boxShadow: "0 2px 8px rgba(0,112,243,0.2)"
+              }}
+            >
+              アプリをダウンロード (ZIP形式)
+            </a>
+            <span style={{ fontSize: 12, color: "#666" }}>
+              💡 解凍後、フォルダ内の <strong>start.bat</strong> を実行してください。
+            </span>
+          </div>
+        </div>
+      )}
+
       <h1 style={{ fontSize: 20, marginBottom: 4 }}>配信字幕エディタ</h1>
       <p style={{ fontSize: 13, color: "#6B6255", marginTop: 0, marginBottom: 24 }}>
         動画をアップロードして、話者ごとに色分けした字幕を作成します。
@@ -219,29 +257,3 @@ export default function Home() {
             onChangeColorOverride={handleChangeColorOverride}
             onChangeIconOverride={handleChangeIconOverride}
             onChangeFontSizeOverride={handleChangeFontSizeOverride}
-            onChangeOutlineColorOverride={handleChangeOutlineColorOverride}
-            onChangeOutlineEnabledOverride={handleChangeOutlineEnabledOverride}
-            onDeleteSegment={handleDeleteSegment}
-            onAddSegment={handleAddSegment}
-          />
-
-          <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 8 }}>
-            <button onClick={handleExport} disabled={renderState === "rendering"}>
-              {renderState === "rendering" ? "動画を書き出し中...(少し時間がかかります)" : "動画を書き出す"}
-            </button>
-
-            {renderState === "error" && (
-              <p style={{ color: "#C23A5C", fontSize: 13, margin: 0 }}>{renderError}</p>
-            )}
-
-            {renderState === "done" && downloadUrl && (
-              <a href={downloadUrl} download style={{ fontSize: 14 }}>
-                完成した動画をダウンロード
-              </a>
-            )}
-          </div>
-        </div>
-      )}
-    </main>
-  );
-}
